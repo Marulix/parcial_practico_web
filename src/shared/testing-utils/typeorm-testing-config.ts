@@ -1,17 +1,19 @@
 /* eslint-disable prettier/prettier */
 
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { AirlineEntity } from "../../airline/airline.entity";
-import { AirportEntity } from "../../airport/airport.entity";
+import { AlbumEntity } from "../../album/album.entity";
+import { TrackEntity } from "../../track/track.entity";
+import { PerformerEntity } from "../../performer/performer.entity";
+
 
 export const TypeOrmTestingConfig = () => [
-    TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: ':memory:',
-      dropSchema: true,
-      entities: [AirlineEntity, AirportEntity],
-      synchronize: true,
-      keepConnectionAlive: true
-    }),
-    TypeOrmModule.forFeature([AirlineEntity, AirportEntity]),
-   ];
+  TypeOrmModule.forRoot({
+    type: 'sqlite',
+    database: ':memory:',
+    dropSchema: true,
+    entities: [AlbumEntity, TrackEntity, PerformerEntity],
+    synchronize: true,
+    keepConnectionAlive: true
+  }),
+  TypeOrmModule.forFeature([AlbumEntity, TrackEntity, PerformerEntity]),
+];
