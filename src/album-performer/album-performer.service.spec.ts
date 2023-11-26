@@ -12,8 +12,6 @@ describe('AlbumPerformerService', () => {
   let service: AlbumPerformerService;
   let albumRepository: Repository<AlbumEntity>;
   let performerRepository: Repository<PerformerEntity>;
-  let album: AlbumEntity;
-  let performersList: PerformerEntity[];
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -29,31 +27,7 @@ describe('AlbumPerformerService', () => {
       getRepositoryToken(PerformerEntity),
     );
 
-    await seedDatabase();
   });
-
-  const seedDatabase = async () => {
-    performerRepository.clear();
-    albumRepository.clear();
-
-    performersList = [];
-    for (let i = 0; i < 5; i++) {
-      const performer: PerformerEntity = await performerRepository.save({
-        name: faker.lorem.word(),
-        image: faker.image.url(),
-        description: faker.lorem.paragraph(),
-      });
-      performersList.push(performer);
-    }
-
-    album = await albumRepository.save({
-      name: faker.lorem.word(),
-      albumCover: faker.image.url(),
-      releaseDate: faker.date.past(),
-      description: faker.lorem.paragraph(),
-      performers: performersList,
-    });
-  };
 
   it('should be defined', () => {
     expect(service).toBeDefined();

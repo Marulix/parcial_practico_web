@@ -53,8 +53,8 @@ export class TrackService {
         BusinessError.BAD_REQUEST,
       );
 
-    album.tracks = [...album.tracks, track];
     await this.albumRepository.save(album);
+    track.album = album;
     return await this.trackRepository.save(track);
   }
 }

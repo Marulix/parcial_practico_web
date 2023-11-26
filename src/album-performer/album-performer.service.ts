@@ -49,7 +49,7 @@ export class AlbumPerformerService {
         BusinessError.NOT_FOUND,
       );
 
-    if (album.performers.length > 3)
+    if (album.performers.length >= 3)
       throw new BusinessLogicException(
         'The album cannot have more than 3 performers',
         BusinessError.BAD_REQUEST,

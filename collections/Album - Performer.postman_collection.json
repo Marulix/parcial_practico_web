@@ -1,0 +1,770 @@
+{
+	"info": {
+		"_postman_id": "dae4e0bc-389b-4ee5-a659-b138c7aa3cb9",
+		"name": "Album - Performer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30845479"
+	},
+	"item": [
+		{
+			"name": "Add an album",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"idAlbum\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"string\",\n  \"albumCover\": \"https://www.albumwebsite.com\",\n  \"releaseDate\": \"2022-01-01\",\n  \"description\": \"string\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/albums",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"albums"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add an album",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"string\",\n  \"albumCover\": \"https://www.albumwebsite.com\",\n  \"releaseDate\": \"2022-01-01\",\n  \"description\": \"string\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/albums",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"albums"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"name\": \"string\",\n  \"albumCover\": \"https://www.albumwebsite.com\",\n  \"releaseDate\": \"2022-01-01\",\n  \"description\": \"string\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add first performer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"idPerformer\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Performer Name\",\n  \"image\": \"https://www.performer.com\",\n  \"description\": \"string\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/performers",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"performers"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add an performer",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Performer Name\",\n  \"image\": \"https://www.performer.com\",\n  \"description\": \"string\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/performers",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"performers"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"name\": \"Performer Name\",\n  \"image\": \"https://www.performer.com\",\n  \"description\": \"string\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add first performer to a album",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test('Response JSON performers array should have less than 4 performers', function () {",
+							"    pm.expect(pm.response.json().performers).to.be.an('array').length.lessThan(4)",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/albums/{{idAlbum}}/performers/{{idPerformer}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"albums",
+						"{{idAlbum}}",
+						"performers",
+						"{{idPerformer}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add an performer to a album",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/albums/{{idAlbum}}/performers/{{idPerformer}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"albums",
+								"{{idAlbum}}",
+								"performers",
+								"{{idPerformer}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"0e98f17e-1dd0-4733-bb4d-71e6b523c6ce\",\r\n    \"name\": \"Album Name\",\r\n    \"description\": \"Album Description\",\r\n    \"foundationDate\": \"2022-01-01T05:00:00.000Z\",\r\n    \"webPage\": \"https://www.albumwebsite.com\",\r\n    \"performers\": [\r\n        {\r\n            \"id\": \"71ff4656-3f16-4a1a-b2f1-4b615a13fbba\",\r\n            \"name\": \"Performer Name\",\r\n            \"code\": \"AIR\",\r\n            \"country\": \"Country Name\",\r\n            \"city\": \"City Name\"\r\n        }\r\n    ]\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Add second performer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"idPerformer\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Performer Name\",\n  \"image\": \"https://www.performer.com\",\n  \"description\": \"string\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/performers",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"performers"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add an performer",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Performer Name\",\n  \"image\": \"https://www.performer.com\",\n  \"description\": \"string\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/performers",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"performers"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"name\": \"Performer Name\",\n  \"image\": \"https://www.performer.com\",\n  \"description\": \"string\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add second performer to a album",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test('Response JSON performers array should have less than 4 performers', function () {",
+							"    pm.expect(pm.response.json().performers).to.be.an('array').length.lessThan(3)",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/albums/{{idAlbum}}/performers/{{idPerformer}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"albums",
+						"{{idAlbum}}",
+						"performers",
+						"{{idPerformer}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add an performer to a album",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/albums/{{idAlbum}}/performers/{{idPerformer}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"albums",
+								"{{idAlbum}}",
+								"performers",
+								"{{idPerformer}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"0e98f17e-1dd0-4733-bb4d-71e6b523c6ce\",\r\n    \"name\": \"Album Name\",\r\n    \"description\": \"Album Description\",\r\n    \"foundationDate\": \"2022-01-01T05:00:00.000Z\",\r\n    \"webPage\": \"https://www.albumwebsite.com\",\r\n    \"performers\": [\r\n        {\r\n            \"id\": \"71ff4656-3f16-4a1a-b2f1-4b615a13fbba\",\r\n            \"name\": \"Performer Name\",\r\n            \"code\": \"AIR\",\r\n            \"country\": \"Country Name\",\r\n            \"city\": \"City Name\"\r\n        }\r\n    ]\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Add third performer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"idPerformer\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Performer Name\",\n  \"image\": \"https://www.performer.com\",\n  \"description\": \"string\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/performers",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"performers"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add an performer",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Performer Name\",\n  \"image\": \"https://www.performer.com\",\n  \"description\": \"string\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/performers",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"performers"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"name\": \"Performer Name\",\n  \"image\": \"https://www.performer.com\",\n  \"description\": \"string\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add third performer to a album",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test('Response JSON performers array should have less than 4 performers', function () {",
+							"    pm.expect(pm.response.json().performers).to.be.an('array').length.lessThan(4)",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/albums/{{idAlbum}}/performers/{{idPerformer}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"albums",
+						"{{idAlbum}}",
+						"performers",
+						"{{idPerformer}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add an performer to a album",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/albums/{{idAlbum}}/performers/{{idPerformer}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"albums",
+								"{{idAlbum}}",
+								"performers",
+								"{{idPerformer}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"0e98f17e-1dd0-4733-bb4d-71e6b523c6ce\",\r\n    \"name\": \"Album Name\",\r\n    \"description\": \"Album Description\",\r\n    \"foundationDate\": \"2022-01-01T05:00:00.000Z\",\r\n    \"webPage\": \"https://www.albumwebsite.com\",\r\n    \"performers\": [\r\n        {\r\n            \"id\": \"71ff4656-3f16-4a1a-b2f1-4b615a13fbba\",\r\n            \"name\": \"Performer Name\",\r\n            \"code\": \"AIR\",\r\n            \"country\": \"Country Name\",\r\n            \"city\": \"City Name\"\r\n        }\r\n    ]\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Add more performers to a album",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"   pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The album cannot have more than 3 performers\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/albums/{{idAlbum}}/performers/{{idPerformer}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"albums",
+						"{{idAlbum}}",
+						"performers",
+						"{{idPerformer}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add an performer to a album",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/albums/{{idAlbum}}/performers/{{idPerformer}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"albums",
+								"{{idAlbum}}",
+								"performers",
+								"{{idPerformer}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 400,\r\n    \"message\": \"The album cannot have more than 3 performers\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Add an invalid performer to a album",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The performer with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/albums/{{idAlbum}}/performers/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"albums",
+						"{{idAlbum}}",
+						"performers",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add an invalid performer to a album",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/albums/{{idAlbum}}/performers/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"albums",
+								"{{idAlbum}}",
+								"performers",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The performer with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add a performer to an invalid album",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The album with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/albums/00000000-0000-0000-0000-000000000000/performers/{{idPerformer}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"albums",
+						"00000000-0000-0000-0000-000000000000",
+						"performers",
+						"{{idPerformer}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add an invalid performer to a album",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/albums/{{idAlbum}}/performers/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"albums",
+								"{{idAlbum}}",
+								"performers",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The performer with the given id was not found\"\n}"
+				}
+			]
+		}
+	]
+}
